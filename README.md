@@ -1,11 +1,11 @@
 # k8-nodeOS-builder
+> tutorial to upload custome OS images to DevStack & CloudStack
 
-## Prepere Openstack
-
+### Set-up enviroment for DevStack
 Go to
 <https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant>
 
-Clone and run Openstack in Vagrand
+After cloning the repository, follow the steps on how to spin up a DevStack in Vagrand.
 
 ### Upload reference image via glance
 
@@ -23,67 +23,68 @@ glance image-create --name centos7 --disk-format qcow2 --container-format bare -
 exit
 ```
 
-
-### Openstack network configuration
-Packer requires well configured network to be able proceed all build steps.
-In file install.json you have to enter private network ID.
-Private network should be connected via router to public network.
-
-
-
 ## Install Packer
 Packer is a tool developed by HashiCorp (the people behind Vagrant) to help you create identical cloud images for a variety of different environments. It also allows you to create image templates that are easy to version control and understand what happens during the image creation process.
 
-download  from here: <https://www.packer.io/downloads.html> and unzip
+Downloads for different OS's are available from: <https://www.packer.io/downloads.html>
+
 ```
+## linux users can install by pasting into terminal:
 curl -L https://releases.hashicorp.com/packer/0.10.0/packer_0.10.0_linux_amd64.zip -O
 unzip packer_0.10.0_linux_amd64.zip
 ```
 
-You can do it in this project or in your home directory and copy packer binary to custom-image-builder
+After unzipping the the downloaded file, move the binary to the root of the cloned git project above.
 
 ## Run build process
 
-First open install.json file and make some simple modifications
+Open install.json file and populate the marked fields: name, source_image and networks.
 ```
-{
-  "builders": [{
-    "type": "openstack",
-    "identity_endpoint": "http://192.168.123.100:5000/v2.0",
-    "tenant_name": "admin",
-    "username": "admin",
-    "password": "secretsecret",
-    "region": "RegionOne",
-    "ssh_username": "centos",
-    "image_name": "centos7-docker-full",
-    "source_image": "e842d5ee-3c59-4283-86bc-067ff433bc07",
-    "flavor": "m1.small",
-    "networks": ["c3c8c432-3f2b-49a8-9281-a190d6a932ff"],
-    "insecure": "true",
-    "use_floating_ip": true,
-    "ssh_pty" : true
-  }
-
-  ],
-
-  "provisioners": [{
-    "type": "shell",
-    "script": "install-docker.sh"
-  },
-  {
-      "type": "shell",
-      "script": "install-docker-bootstrap.sh"
-  }]
+   "builders":[
+      {
+         "type":"openstack",
+         "identity_endpoint":"http://192.168.123.100:5000/v2.0",
+         "tenant_name":"admin",
+         "username":"admin",
+         "password":"secretsecret",
+         "region":"RegionOne",
+         "ssh_username":"centos",
+         "image_name":"centos7-docker-shrinked-full",
+         "source_image":"fb7cc1b3-c3d8-4800-af5b-a3eaa274631c",
+         "flavor":"m1.small",
+         "networks":[
+            "9dcff775-7345-4a3c-8bf2-3508f30531f8"
+         ],
+         "insecure":"true",
+         "use_floating_ip":true,
+         "ssh_pty":true
+      }
+   ],
+   "provisioners":[
+      {
+         "type":"shell",
+         "script":"install-docker.sh"
+      },
+      {
+         "type":"shell",
+         "script":"install-docker-bootstrap.sh"
+      },
+      {
+         "type":"shell",
+         "inline":[
+            "sudo yum -y install bridge-utils",
+            "sudo yum clean all",
+            "sudo dd if=/dev/zero of=/EMPTY bs=1M | true",
+            "sudo rm -f /EMPTY"
+         ]
+      }
+   ]
 }
 ```
-"image_name": "centos7-docker-full" - name for new image
 
-"source_image": "e842d5ee-3c59-4283-86bc-067ff433bc07" - source image ID. You can get it from Horizon
-
-"networks": ["c3c8c432-3f2b-49a8-9281-a190d6a932ff"] - Openstack private network ID. You can get it from Horizon
-
-When you update source_image and networks you must source Openstack credential variables from
-openrc-default.sh
+- Building on DevStack requires all the following environment
+variables. To do that just execute the openrc-default.sh. 
+Make sure you enter the correct OS_TENANT_ID from Horizon: Identity -> Projects -> admin -> Project ID 
 
 ```
 #!/bin/bash
@@ -96,22 +97,24 @@ export OS_TENANT_NAME=admin
 export OS_TENANT_ID=0f3f383e84d24d618d3c8f9b2ccc8e20
 
 ```
-Enter correct OS_TENANT_ID from Horizon: Identity -> Projects -> admin -> Project ID
 
-
+!Important: 
 Source the openrc-default.sh
 
 ```
 . openrc-default.sh
 ```
 
+Validate json file for correctnes:
+```
+./packer validate install.json
+```
 
-
-To run build process execute command:
+Run build process:
 ```
 ./packer build install.json
 ```
-You shuld see:
+If everything is configured correctly you shuld see following output:
 ```
 openstack output will be in this color.
 
@@ -241,6 +244,6 @@ Build 'openstack' finished.
 
 ```
 
-Now image is available in OpenStack with name centos7-docker-full
+Image should now be uploaded to OpenStack. You should see it on the HorizonUI under Project -> Images under the name assigned in the json file above.
 
 

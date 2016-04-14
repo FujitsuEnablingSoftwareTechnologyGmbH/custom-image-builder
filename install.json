@@ -1,31 +1,41 @@
 {
-  "builders": [{
-    "type": "openstack",
-    "identity_endpoint": "http://192.168.123.100:5000/v2.0",
-    "tenant_name": "admin",
-    "username": "admin",
-    "password": "secretsecret",
-    "region": "RegionOne",
-    "ssh_username": "centos",
-    "image_name": "centos7-docker-full",
-    "source_image": "e842d5ee-3c59-4283-86bc-067ff433bc07",
-    "flavor": "m1.small",
-    "networks": ["c3c8c432-3f2b-49a8-9281-a190d6a932ff"],
-    "insecure": "true",
-    "use_floating_ip": true,
-    "ssh_pty" : true
-  }
-
-  ],
-
-  "provisioners": [{
-    "type": "shell",
-    "script": "install-docker.sh"
-  },
-  {
-      "type": "shell",
-      "script": "install-docker-bootstrap.sh"
-  }]
+   "builders":[
+      {
+         "type":"openstack",
+         "identity_endpoint":"http://192.168.123.100:5000/v2.0",
+         "tenant_name":"admin",
+         "username":"admin",
+         "password":"secretsecret",
+         "region":"RegionOne",
+         "ssh_username":"centos",
+         "image_name":"centos7-docker-shrinked-full",
+         "source_image":"fb7cc1b3-c3d8-4800-af5b-a3eaa274631c",
+         "flavor":"m1.small",
+         "networks":[
+            "9dcff775-7345-4a3c-8bf2-3508f30531f8"
+         ],
+         "insecure":"true",
+         "use_floating_ip":true,
+         "ssh_pty":true
+      }
+   ],
+   "provisioners":[
+      {
+         "type":"shell",
+         "script":"install-docker.sh"
+      },
+      {
+         "type":"shell",
+         "script":"install-docker-bootstrap.sh"
+      },
+      {
+         "type":"shell",
+         "inline":[
+            "sudo yum -y install bridge-utils",
+            "sudo yum clean all",
+            "sudo dd if=/dev/zero of=/EMPTY bs=1M | true",
+            "sudo rm -f /EMPTY"
+         ]
+      }
+   ]
 }
-
-
