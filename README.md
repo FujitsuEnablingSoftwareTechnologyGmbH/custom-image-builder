@@ -157,6 +157,6 @@ Build 'openstack' finished.
 
 ```
 
-### Image should now be uploaded to OpenStack. You should see it on the HorizonUI under Project -> Images under the name assigned in the json file above.
+- Image should now be uploaded to OpenStack. You should see it on the HorizonUI under Project -> Images under the name assigned in the json file above.
 
 
