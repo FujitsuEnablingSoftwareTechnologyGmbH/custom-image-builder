@@ -1,13 +1,13 @@
 # k8-nodeOS-builder
 > tutorial to upload custome OS images to DevStack & CloudStack
 
-### Set-up enviroment for DevStack
+## Set-up enviroment for DevStack
 Go to
 <https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant>
 
 After cloning the repository, follow the steps on how to spin up a DevStack in Vagrand.
 
-## Upload reference image via glance
+### Upload reference image via glance
 
 ```
 cd devstack-vagrant
@@ -23,7 +23,7 @@ glance image-create --name centos7 --disk-format qcow2 --container-format bare -
 exit
 ```
 
-## Install Packer
+### Install Packer
 Packer is a tool developed by HashiCorp (the people behind Vagrant) to help you create identical cloud images for a variety of different environments. It also allows you to create image templates that are easy to version control and understand what happens during the image creation process.
 
 Downloads for different OS's are available from: <https://www.packer.io/downloads.html>
@@ -36,7 +36,7 @@ unzip packer_0.10.0_linux_amd64.zip
 
 After unzipping the the downloaded file, move the binary to the root of the cloned git project above.
 
-## Run build process
+### Run build process
 
 Open install.json file and populate the marked fields: name, source_image and networks.
 ```
@@ -98,22 +98,22 @@ export OS_TENANT_ID=0f3f383e84d24d618d3c8f9b2ccc8e20
 
 ```
 
-# Source the openrc-default.sh
+### Source the openrc-default.sh
 
 ```
 . openrc-default.sh
 ```
 
-# Validate json file for correctnes:
+### Validate json file for correctnes:
 ```
 ./packer validate install.json
 ```
 
-# Run build process:
+### Run build process:
 ```
 ./packer build install.json
 ```
-# If everything is configured correctly you shuld see following output:
+### If everything is configured correctly you shuld see following output:
 ```
 openstack output will be in this color.
 
@@ -157,6 +157,6 @@ Build 'openstack' finished.
 
 ```
 
-# Image should now be uploaded to OpenStack. You should see it on the HorizonUI under Project -> Images under the name assigned in the json file above.
+### Image should now be uploaded to OpenStack. You should see it on the HorizonUI under Project -> Images under the name assigned in the json file above.
 
 
