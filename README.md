@@ -49,6 +49,7 @@ After adding the enviroment variables to the env-vars-vm.sh file we need to sour
 . env-vars-vm.sh 
 	or 
 source env-vars-vm.sh
+```
 
 #### Edit install_nodeos.json with correct parameters 
 Open install.json file and populate the marked fields: name, source_image and networks.
