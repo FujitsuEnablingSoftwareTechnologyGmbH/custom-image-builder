@@ -17,6 +17,3 @@ sudo yum install -y docker-engine
 
 sudo systemctl enable docker
 sudo systemctl restart docker
-
-
-
