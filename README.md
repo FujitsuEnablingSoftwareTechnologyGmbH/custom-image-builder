@@ -1,16 +1,15 @@
-# k8-nodeOS-builder
+k8-nodeOS-builder
 > tutorial to upload custom OS images to DevStack & CloudStack
 ==================
 
 Prerequisites
 -------------
-
 - Install [Packer.io](https://packer.io/downloads.html), see [installation instructions](https://packer.io/docs/installation.html).
 
 
-## Local Example using DevStack
+Local Example using DevStack
 --------------
-Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk.
+Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk.
 
 After cloning the repository, follow the steps on how to spin up an instance of DevStack in Vagrand.
 
@@ -136,7 +135,7 @@ Build 'openstack' finished.
 - Image should now be uploaded to OpenStack. You should see it on the HorizonUI under Project -> Images under the name assigned in the json file above.
 
 
-## Cloud Example using Openstack on CityCloud
+Cloud Example using Openstack on CityCloud
 --------------
 We are assuming that CityCloud or which ever public cloud provider you choose lets you create a reference image. Openstack api requires you to have a reference image on which the further provisioning will be based. After you have successfully created a reference image on your cloud, in this case a CentOS image, we will be using packer to further customize the image with necessary packages.
 
