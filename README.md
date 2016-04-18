@@ -14,17 +14,17 @@ After cloning the repository, follow the steps on how to spin up an instance of 
 
 #### Upload reference image via glance
 ```
-cd devstack-vagrant
-vagrant ssh
+$ cd devstack-vagrant
+$ vagrant ssh
 
-sudo su - stack
-. devstack/openrc admin admin
+$ sudo su - stack
+$ . devstack/openrc admin admin
 
-curl -L http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1603.qcow2.xz -O
-unxz CentOS-7-x86_64-GenericCloud-1603.qcow2.xz
-glance image-create --name centos7 --disk-format qcow2 --container-format bare --file CentOS-7-x86_64-GenericCloud-1603.qcow2 --is-public True
+$ curl -L http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1603.qcow2.xz -O
+$ unxz CentOS-7-x86_64-GenericCloud-1603.qcow2.xz
+$ glance image-create --name centos7 --disk-format qcow2 --container-format bare --file CentOS-7-x86_64-GenericCloud-1603.qcow2 --is-public True
 
-exit
+$ exit
 ```
 
 #### Configuring enviroment variables 
@@ -46,9 +46,9 @@ export OS_TENANT_ID=0f3f383e84d24d618d3c8f9b2ccc8e20
 #### Source the env-vars-vm.sh
 After adding the enviroment variables to the env-vars-vm.sh file we need to source the file:
 ```
-. env-vars-vm.sh 
+$ . env-vars-vm.sh 
 	or 
-source env-vars-vm.sh
+$ source env-vars-vm.sh
 ```
 
 #### Edit install_nodeos.json with correct parameters 
@@ -79,12 +79,12 @@ Open install.json file and populate the marked fields: name, source_image and ne
 
 #### Validate json file for correctness:
 ```
-./packer validate install_nodeos.json
+$ ./packer validate install_nodeos.json
 ```
 
 #### Run build process:
 ```
-./packer build install_nodeos.json
+$ ./packer build install_nodeos.json
 ```
 
 #### If everything is configured correctly you should see following output:
@@ -156,9 +156,9 @@ export OS_REGION_NAME=Sto2
 #### Source the env-vars-cloud.sh
 After adding the enviroment variables to the env-vars-cloud.sh file we need to source the file:
 ```
-. env-vars-cloud.sh 
+$ . env-vars-cloud.sh 
 	or 
-source env-vars-cloud.sh
+$ source env-vars-cloud.sh
 ```
 #### Edit install_cloud.json with correct parameters 
 Parameters with need to be inserted:
@@ -188,12 +188,12 @@ Open install_cloud.json file and populate the fields from above:
 
 #### Validate json file for correctness:
 ```
-./packer validate install_cloud.json
+$ ./packer validate install_cloud.json
 ```
 
 #### Run build process:
 ```
-./packer build install_cloud.json
+$ ./packer build install_cloud.json
 ```
 
 #### If everything is configured correctly the output should be similar to the output produced when provisioning locally...
