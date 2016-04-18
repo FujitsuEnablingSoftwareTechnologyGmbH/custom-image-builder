@@ -27,7 +27,7 @@ glance image-create --name centos7 --disk-format qcow2 --container-format bare -
 exit
 ```
 
-### Configuring enviroment variables 
+#### Configuring enviroment variables 
 - Building on DevStack requires all the following environment
 variables. To do that just execute the env-vars-vm.sh 
 Make sure you enter the correct OS_TENANT_ID from Horizon: Identity -> Projects -> admin -> Project ID 
@@ -43,15 +43,14 @@ export OS_TENANT_ID=0f3f383e84d24d618d3c8f9b2ccc8e20
 
 ```
 
-### Source the env-vars-vm.sh
+#### Source the env-vars-vm.sh
 After adding the enviroment variables to the env-vars-vm.sh file we need to source the file:
 ```
 . env-vars-vm.sh 
 	or 
 source env-vars-vm.sh
 
-### Edit install_nodeos.json with correct parameters 
-
+#### Edit install_nodeos.json with correct parameters 
 Open install.json file and populate the marked fields: name, source_image and networks.
 ```
    "builders":[
@@ -77,19 +76,19 @@ Open install.json file and populate the marked fields: name, source_image and ne
    "provisioners":[ ...
 ```
 
-### Validate json file for correctness:
+#### Validate json file for correctness:
 ```
 ./packer validate install_nodeos.json
 ```
 
-### Run build process:
+#### Run build process:
 ```
 ./packer build install_nodeos.json
 ```
 
-### If everything is configured correctly you should see following output:
+#### If everything is configured correctly you should see following output:
 ```
-openstack output will be in this color.
+Openstack output will be in this color.
 
 ==> openstack: Discovering enabled extensions...
 ==> openstack: Loading flavor: m1.small
@@ -138,7 +137,7 @@ Cloud Example using Openstack on CityCloud
 --------------
 We are assuming that CityCloud or which ever public cloud provider you choose lets you create a reference image. Openstack api requires you to have a reference image on which the further provisioning will be based. After you have successfully created a reference image on your cloud, in this case a CentOS image, we will be using packer to further customize the image with necessary packages.
 
-### Configuring enviroment variables 
+#### Configuring enviroment variables 
 - Building on OpenStack on City Cloud requires all the following environment variables (with example values) You will have to look these up from your cloud provider and populate them accordingly. It could also be that each cloud provider has their own set of required variables and that could be different from the ones below. 
 
 ```
@@ -153,14 +152,14 @@ export OS_USERNAME=packer-demo
 export OS_PASSWORD=ThePassword
 export OS_REGION_NAME=Sto2
 ```
-### Source the env-vars-cloud.sh
+#### Source the env-vars-cloud.sh
 After adding the enviroment variables to the env-vars-cloud.sh file we need to source the file:
 ```
 . env-vars-cloud.sh 
 	or 
 source env-vars-cloud.sh
 ```
-### Edit install_cloud.json with correct parameters 
+#### Edit install_cloud.json with correct parameters 
 Parameters with need to be inserted:
 "image_name" - can leave as is or provide your own
 "source_image" - usually available from cloud providers GUI
@@ -186,14 +185,14 @@ Open install_cloud.json file and populate the fields from above:
   "provisioners": [ ...
 ```
 
-### Validate json file for correctness:
+#### Validate json file for correctness:
 ```
 ./packer validate install_cloud.json
 ```
 
-### Run build process:
+#### Run build process:
 ```
 ./packer build install_cloud.json
 ```
 
-### If everything is configured correctly the output should be similar to the output produced when provisioning locally...
+#### If everything is configured correctly the output should be similar to the output produced when provisioning locally...
