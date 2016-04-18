@@ -40,7 +40,6 @@ export OS_PASSWORD=secretsecret
 export OS_AUTH_URL=http://192.168.123.100:5000/v2.0
 export OS_TENANT_NAME=admin
 export OS_TENANT_ID=0f3f383e84d24d618d3c8f9b2ccc8e20
-
 ```
 
 #### Source the env-vars-vm.sh
@@ -63,11 +62,11 @@ Open install.json file and populate the marked fields: name, source_image and ne
          "password":"secretsecret",
          "region":"RegionOne",
          "ssh_username":"centos",
-	 "image_name": "packer-demo-{{timestamp}}",
-	 "source_image":"<paste source image id ex. 7cc1b3-c3d8-4...etc>",
+	 "image_name": "< !populate " >,
+	 "source_image":"< !populate >",
 	 "flavor":"m1.small",
 	 "networks":[
-            "<paste PRIVATE network id ex. 9dcff775-7345-4a...etc>"
+            "< !populate >"
          ],
          "insecure":"true",
          "use_floating_ip":true,
@@ -176,11 +175,11 @@ Open install_cloud.json file and populate the fields from above:
       "endpoint_type": "publicURL",
       "ssh_username": "centos",
       "ssh_pty": "true",
-      "image_name": "packer-demo-{{timestamp}}",
-      "source_image": "01e6ecff-bbcb-4f6e-8b5c-98be62ed995f",
-      "flavor": "8e00bc89-f2b0-40d3-96d4-05bd67f6e6bf",
+      "image_name": "< !populate " >",
+      "source_image": "< !populate " >",
+      "flavor": "< !populate " >",
       "use_floating_ip": "true",
-      "floating_ip": "37.153.139.206"
+      "floating_ip": "< !populate " >"
     }
   ],
   "provisioners": [ ...
