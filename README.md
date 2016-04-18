@@ -19,6 +19,21 @@ export OS_USERNAME=packer-demo
 export OS_PASSWORD=ThePassword
 export OS_REGION_NAME=Sto2
 ```
+### Source the openrc-default.sh
+After adding the enviroment variables to the openrc_default.sh file we need to source the file:
+```
+. openrc-default.sh
+```
+### Validate json file for correctnes:
+```
+./packer validate install.json
+```
+
+### Run build process:
+```
+./packer build install.json
+```
+
 Open openstack_install.json file and populate the marked fields: name, source_image and networks.
 ```
 {
@@ -61,7 +76,7 @@ Open openstack_install.json file and populate the marked fields: name, source_im
 ```
 
 
-With the above variables set run: ```packer build -only=openstack cloud.json```
+With the above variables set run: ```packer build openstack_install.json```
 
 
 ## Set-up enviroment for DevStack

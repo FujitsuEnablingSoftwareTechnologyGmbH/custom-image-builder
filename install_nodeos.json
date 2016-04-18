@@ -8,7 +8,7 @@
          "password":"secretsecret",
          "region":"RegionOne",
          "ssh_username":"centos",
-         "image_name":"centos7-docker-shrinked-full",
+         "image_name":"centos7-docker-full",
          "source_image":"fb7cc1b3-c3d8-4800-af5b-a3eaa274631c",
          "flavor":"m1.small",
          "networks":[
@@ -21,21 +21,31 @@
    ],
    "provisioners":[
       {
-         "type":"shell",
-         "script":"install-docker.sh"
+      	"type": "shell",
+      	"execute_command": "{{.Vars}} /bin/sh -x '{{.Path}}'",
+        "script":"scripts/cloud/install-docker.sh"
       },
       {
-         "type":"shell",
-         "script":"install-docker-bootstrap.sh"
+      	"type": "shell",
+      	"execute_command": "{{.Vars}} /bin/sh -x '{{.Path}}'",
+        "script":"scripts/cloud/install-docker-bootstrap.sh"
       },
       {
          "type":"shell",
          "inline":[
             "sudo yum -y install bridge-utils",
-            "sudo yum clean all",
-            "sudo dd if=/dev/zero of=/EMPTY bs=1M | true",
-            "sudo rm -f /EMPTY"
-         ]
+            "sudo yum clean all"
+       	]
+      },
+       {
+      	"type": "shell",
+      	"execute_command": "{{.Vars}} /bin/sh -x '{{.Path}}'",
+        "script":"scripts/os/minimize.sh"
+      },
+      {
+      	"type": "shell",
+      	"execute_command": "{{.Vars}} /bin/sh -x '{{.Path}}'",
+        "script":"scripts/os/cleanup.sh"
       }
    ]
 }
