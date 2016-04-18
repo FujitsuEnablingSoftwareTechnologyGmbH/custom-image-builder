@@ -28,7 +28,7 @@ exit
 ```
 
 #### Configuring enviroment variables 
-- Building on DevStack requires all the following environment
+Building on DevStack requires all the following environment
 variables. To do that just execute the env-vars-vm.sh 
 Make sure you enter the correct OS_TENANT_ID from Horizon: Identity -> Projects -> admin -> Project ID 
 ```
@@ -139,7 +139,7 @@ Cloud Example using Openstack on CityCloud
 We are assuming that CityCloud or which ever public cloud provider you choose lets you create a reference image. Openstack api requires you to have a reference image on which the further provisioning will be based. After you have successfully created a reference image on your cloud, in this case a CentOS image, we will be using packer to further customize the image with necessary packages.
 
 #### Configuring enviroment variables 
-- Building on OpenStack on City Cloud requires all the following environment variables (with example values) You will have to look these up from your cloud provider and populate them accordingly. It could also be that each cloud provider has their own set of required variables and that could be different from the ones below. 
+Building on OpenStack on City Cloud requires all the following environment variables (with example values) You will have to look these up from your cloud provider and populate them accordingly. It could also be that each cloud provider has their own set of required variables and that could be different from the ones below. 
 
 ```
 export OS_AUTH_URL=https://identity1.citycloud.com:5000/v3
