@@ -1,5 +1,4 @@
 k8-nodeOS-builder
-> tutorial to upload custom OS images to DevStack & CloudStack
 ==================
 
 Prerequisites
@@ -13,7 +12,7 @@ Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagr
 
 After cloning the repository, follow the steps on how to spin up an instance of DevStack in Vagrand.
 
-### Upload reference image via glance
+#### Upload reference image via glance
 ```
 cd devstack-vagrant
 vagrant ssh
