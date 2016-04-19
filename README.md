@@ -30,8 +30,8 @@ $ glance image-create --name centos7 --disk-format qcow2 --container-format bare
 $ exit
 ```
 
-#### Configuring enviroment variables 
-Building on DevStack requires all if the following environment variables to be set accordingly. Every variable should be left unedited with the excpetions of OS_TENANT_ID. To get this value go to Horizon: Identity -> Projects -> admin -> Project ID.
+#### Configuring environment variables 
+Building on DevStack requires all if the following environment variables to be set accordingly. Every variable should be left unedited with the exceptions of OS_TENANT_ID. To get this value go to Horizon: Identity -> Projects -> admin -> Project ID.
 ```
 #!/bin/bash
 
@@ -138,7 +138,7 @@ Cloud Example using Openstack on CityCloud
 --------------
 We are assuming that CityCloud or which ever public cloud provider you choose lets you create a reference image. Openstack api requires you to have a reference image on which the further provisioning will be based. After you have successfully created a reference image on your cloud, in this case a CentOS image [CentOS Generic Cloud] (http://cloud.centos.org/centos/7/images/), we will be using packer to further customize that image with necessary packages to bake our own nodeos image.
 
-#### Configuring enviroment variables 
+#### Configuring environment variables 
 Building on OpenStack on CityCloud requires all of the following environment variables to be set. You will have to look these up from your cloud provider and populate them accordingly. It is possible that different cloud providers have different set of required variables.
 ```
 export OS_AUTH_URL=https://identity1.citycloud.com:5000/v3
