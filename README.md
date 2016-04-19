@@ -10,11 +10,12 @@ Prerequisites
 Local Example using DevStack
 --------------
 
-#### Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk. 
+#### Clone the following project to local disk
+[FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) 
 ```
 $ git clone https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant.git
 ```
-After cloning the repository, follow the steps on how to spin up an instance of DevStack in Vagrand.
+After cloning the repository, follow the steps on how to spin up an instance of DevStack in Vagrand and proceed to next step below.
 
 #### Upload reference image via glance
 ```
