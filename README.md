@@ -3,13 +3,16 @@ k8-nodeOS-builder
 
 Prerequisites
 -------------
-- Install [Packer.io](https://packer.io/downloads.html), see [installation instructions](https://packer.io/docs/installation.html).
+	- Install [Packer.io](https://packer.io/downloads.html), see [installation instructions](https://packer.io/docs/installation.html).
+	- Install [ git ] (https://git-scm.com/downloads)
 
 
-Local Example using DevStack
---------------
-Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk.
+	Local Example using DevStack
+	--------------
+	Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk. 
+	```
 
+```
 After cloning the repository, follow the steps on how to spin up an instance of DevStack in Vagrand.
 
 #### Upload reference image via glance
@@ -28,9 +31,7 @@ $ exit
 ```
 
 #### Configuring enviroment variables 
-Building on DevStack requires all the following environment
-variables. To do that just execute the env-vars-vm.sh 
-Make sure you enter the correct OS_TENANT_ID from Horizon: Identity -> Projects -> admin -> Project ID 
+Building on DevStack requires all if the following environment variables to be set accordingly. Every variable should be left unedited with the excpetions of OS_TENANT_ID. To get this value go to Horizon: Identity -> Projects -> admin -> Project ID.
 ```
 #!/bin/bash
 
@@ -108,7 +109,7 @@ Openstack output will be in this color.
 ==> openstack: Connected to SSH!
 ==> openstack: Provisioning with shell script: install-docker.sh
 
-∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨∧∨
+/*****************************************************************************************************************/
 
     openstack: --graph=/var/lib/docker-bootstrap
     openstack:
@@ -135,11 +136,10 @@ Build 'openstack' finished.
 
 Cloud Example using Openstack on CityCloud
 --------------
-We are assuming that CityCloud or which ever public cloud provider you choose lets you create a reference image. Openstack api requires you to have a reference image on which the further provisioning will be based. After you have successfully created a reference image on your cloud, in this case a CentOS image, we will be using packer to further customize the image with necessary packages.
+We are assuming that CityCloud or which ever public cloud provider you choose lets you create a reference image. Openstack api requires you to have a reference image on which the further provisioning will be based. After you have successfully created a reference image on your cloud, in this case a CentOS image [CentOS Generic Cloud] (http://cloud.centos.org/centos/7/images/), we will be using packer to further customize that image with necessary packages to bake our own nodeos image.
 
 #### Configuring enviroment variables 
-Building on OpenStack on City Cloud requires all the following environment variables (with example values) You will have to look these up from your cloud provider and populate them accordingly. It could also be that each cloud provider has their own set of required variables and that could be different from the ones below. 
-
+Building on OpenStack on CityCloud requires all of the following environment variables to be set. You will have to look these up from your cloud provider and populate them accordingly. It is possible that different cloud providers have different set of required variables.
 ```
 export OS_AUTH_URL=https://identity1.citycloud.com:5000/v3
 export OS_IDENTITY_API_VERSION=3
