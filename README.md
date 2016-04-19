@@ -3,15 +3,16 @@ k8-nodeOS-builder
 
 Prerequisites
 -------------
-	- Install [Packer.io](https://packer.io/downloads.html), see [installation instructions](https://packer.io/docs/installation.html).
-	- Install [ git ] (https://git-scm.com/downloads)
+- Install [Packer.io](https://packer.io/downloads.html), see [installation instructions](https://packer.io/docs/installation.html).
+- Install [ git ] (https://git-scm.com/downloads)
 
 
-	Local Example using DevStack
-	--------------
-	Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk. 
-	```
+Local Example using DevStack
+--------------
 
+#### Clone the following project [FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant](https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant) onto your local disk. 
+```
+$ git clone https://github.com/FujitsuEnablingSoftwareTechnologyGmbH/devstack-vagrant.git
 ```
 After cloning the repository, follow the steps on how to spin up an instance of DevStack in Vagrand.
 
