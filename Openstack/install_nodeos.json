@@ -1,0 +1,29 @@
+{
+    "builders": [{
+        "type": "openstack",
+        "identity_endpoint": "http://192.168.123.100:5000/v2.0",
+        "tenant_name": "admin",
+        "username": "admin",
+        "password": "secretsecret",
+        "region": "RegionOne",
+        "ssh_username": "centos",
+        "image_name": "centos7-docker-full",
+        "source_image": "25fad5d7-6a24-4ac6-9f54-63fe21e0d4db",
+        "flavor": "m1.small",
+        "networks": [
+            "bee186c1-8e4d-4afb-bb33-1fc8e6aaad10"
+        ],
+        "insecure": "true",
+        "use_floating_ip": true,
+        "ssh_pty": true
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "execute_command": "{{.Vars}} /bin/sh -x '{{.Path}}'",
+        "script": "../OS/CentOS/setup.sh"
+    }, {
+        "type": "shell",
+        "execute_command": "{{.Vars}} /bin/sh -x '{{.Path}}'",
+        "script": "../OS/CentOS/minimize-image.sh"
+    }]
+}
