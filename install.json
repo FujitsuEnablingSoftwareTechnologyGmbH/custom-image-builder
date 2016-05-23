@@ -1,0 +1,31 @@
+{
+  "builders": [{
+    "type": "openstack",
+    "identity_endpoint": "http://192.168.123.100:5000/v2.0",
+    "tenant_name": "admin",
+    "username": "admin",
+    "password": "secretsecret",
+    "region": "RegionOne",
+    "ssh_username": "centos",
+    "image_name": "centos7-docker-full",
+    "source_image": "e842d5ee-3c59-4283-86bc-067ff433bc07",
+    "flavor": "m1.small",
+    "networks": ["c3c8c432-3f2b-49a8-9281-a190d6a932ff"],
+    "insecure": "true",
+    "use_floating_ip": true,
+    "ssh_pty" : true
+  }
+
+  ],
+
+  "provisioners": [{
+    "type": "shell",
+    "script": "install-docker.sh"
+  },
+  {
+      "type": "shell",
+      "script": "install-docker-bootstrap.sh"
+  }]
+}
+
+
