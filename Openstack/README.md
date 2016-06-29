@@ -3,6 +3,7 @@ k8-nodeOS-builder
 
 #### Prerequisites
 Install [Packer.io](https://packer.io/downloads.html), see [installation instructions](https://packer.io/docs/installation.html).
+Enable SSH in your Openstack Security Group. Usually default group is assigned to the nodeos instance. So it requires to add SSH into default security group to enable the connection to the instance. 
 
 #### Edit template file
 Open install_nodeos.json file and populate the marked fields with appropriate values:
