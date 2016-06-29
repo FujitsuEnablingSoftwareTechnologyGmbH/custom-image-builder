@@ -19,7 +19,7 @@ Open install_nodeos.json file and populate the marked fields with appropriate va
         "username": "admin",
         "password": "secretsecret",
         "region": "RegionOne",
-        "ssh_username": "",
+        "ssh_username": "centos",
         "image_name": "node_OS",
         "source_image": "25fad5d7-6a24-4ac6-9f54-63fe21e0d4db",
         "flavor": "m1.small",
