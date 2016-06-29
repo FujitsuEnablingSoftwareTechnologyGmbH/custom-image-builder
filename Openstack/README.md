@@ -10,6 +10,7 @@ Open install_nodeos.json file and populate the marked fields with appropriate va
 -	**name** 					*(name that will identify your image file)*
 -	**source_image** 	*(Project -> Compute -> Images -> centos7 -> ID)*
 -	**networks**			*(Admin -> Networks -> Network Name -> ID)*
+-	**ssh_username**	    *(for centos use centos, use suitable user name for other os)*
 ```
 {
     "builders": [{
